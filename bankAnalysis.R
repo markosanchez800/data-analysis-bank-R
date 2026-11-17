@@ -3,8 +3,8 @@
 
 
 # main
-testDf <- read.csv('test.csv')
-trainDf <- read.csv('train.csv')
+testDf <- read.csv('test.csv', na.strings = c('','NA'))
+trainDf <- read.csv('train.csv', na.strings = c('','NA'))
 
 print('Measures of mean, median, and variance of continuous variables:')
 print(paste('Applicant Income Mean: $', round(mean(testDf$ApplicantIncome),2)))
@@ -20,3 +20,6 @@ print(paste('Coapplicant Income Median: $', median(testDf$CoapplicantIncome, na.
 print(paste('Coapplicant Income SD: $', round(sqrt(var(testDf$CoapplicantIncome, na.rm = TRUE)),2)))
 
 print('Boxplots/Bar graph: loan amount based on gender, loan term based on education status:')
+boxplot(testDf$LoanAmount ~ testDf$Gender, data = testDf, main = 'Loan Amount by Gender', xlab = 'Gender', ylab = 'Loan Amount ($)')
+boxplot(testDf$Loan_Amount_Term ~ testDf$Education, data = testDf, main = 'Loan Term by Education Level', xlab = 'Education Level', ylab = 'Loan Term (Days)')
+
