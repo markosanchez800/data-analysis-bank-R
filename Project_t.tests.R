@@ -1,12 +1,11 @@
 # Going to do a t.test to test the means
-#this is a t.test of if the H0:mu=150 vs. Ha: mu != 150
-train$Self_Employed
+#this is a t.test of if the H0:mu=146 vs. Ha: mu > 150
 train$LoanAmount
 Loanvals <- train$LoanAmount[is.na(train$LoanAmount)==FALSE]
 Loanvals
 mean(Loanvals)
-t.test(Loanvals, alternative= "two.sided", mu= 150)
-# p-value is 0.3 so we fail to reject the null hypothesis of mu being equal to 150
+t.test(Loanvals, alternative= "greater", mu= 146)
+# p-value is 0.4534 so we fail to reject the null hypothesis because the p-value is too high compared to alpha=0.05.
 
 # Going to do a 2 sample t.test testing the means of two groups for significance or if it's due to 
 #random chance.
