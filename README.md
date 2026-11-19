@@ -5,9 +5,9 @@
 ## Dataset: https://www.kaggle.com/datasets/kumarsakshat22/standard-bank-forage
 
 ## Description:
-→ This data is from a bank that provides information of 367 loans that were taken out. The information provided includes the loan amount, the gender of who took out the loan, their marital status, if and/or any dependents, employment status, income(self and/or co-applicant), loan term, and their education level. 
+→ This data is from a bank that provides information of 614 loans that were taken out. The information provided includes the loan amount, the gender of who took out the loan, their marital status, if and/or any dependents, employment status, income(self and/or co-applicant), loan term, and their education level. 
 
-## Columns/Features: (12 columns and 367 rows)
+## Columns/Features: (12 columns and 614 rows)
 - Loan_ID: unique ID number for each row
 - Married: marital status (Binary – Yes/No)
 - Dependents: number of dependents (Integer)
@@ -15,8 +15,8 @@
 - Self_Employed: (Binary - Yes/No)
 - Applicant Income: $ (Continuous)
 - CoApplicant Income: $ (Continuous)
-- Loan Amount: $ (Continuous)
-- Loan Amount Term: repayment period of loan (Integer - days)
+- Loan Amount: $ (Continuous - in thousands)
+- Loan Amount Term: repayment period of loan (Integer - months)
 - Credit History: (Binary - 1 for Credit History, 0 for None)
 - Property Area: Zoning for home property (Categorical - Rural/Urban/Semiurban)
 
