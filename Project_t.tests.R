@@ -1,5 +1,5 @@
 # Going to do a t.test to test the means
-#this is a t.test of if the H0:mu=146 vs. Ha: mu > 150
+#this is a t.test of if the H0:mu=146 vs. Ha: mu > 146
 train$LoanAmount
 Loanvals <- train$LoanAmount[is.na(train$LoanAmount)==FALSE]
 Loanvals
