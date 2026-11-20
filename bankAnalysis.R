@@ -19,7 +19,7 @@ trainDf$CoapplicantIncome[index]
 
 #since many values are zero, it causes some nonzero values to become outliers
 boxplot.stats(trainDf$CoapplicantIncome)$out
-boxplot(trainDf$ApplicantIncome, #boxplot showing coapplicant income
+boxplot(trainDf$CoapplicantIncome, #boxplot showing coapplicant income
         main = "Coapplicant income",
         ylab = "($)")
 
@@ -52,10 +52,10 @@ boxplot(trainDf$LoanAmount ~ trainDf$Education,
         data = trainDf, main = 'Loan Amount by Education Level', 
         xlab = 'Gender', ylab = 'Loan Amount ($)')
 boxplot(trainDf$LoanAmount ~ trainDf$Dependents, 
-        data = trainDf, main = 'Loan Amount by Education Level', 
+        data = trainDf, main = 'Loan Amount by Dependents', 
         xlab = 'Gender', ylab = 'Loan Amount ($)')
 boxplot(trainDf$LoanAmount ~ trainDf$Property_Area, 
-        data = trainDf, main = 'Loan Amount by Education Level', 
+        data = trainDf, main = 'Loan Amount by Property Area', 
         xlab = 'Gender', ylab = 'Loan Amount ($)')
 
 #Other categorical plots
@@ -83,7 +83,33 @@ ggplot(trainDf, aes(x=ApplicantIncome,y=LoanAmount,color=Loan_Status))+
 
 #QQplots, hypothesis testing, etc.
 
+#X^2 Testing
+tb1 <- table(trainDf$Gender, trainDf$Education)
+result1 <- chisq.test(tb1)
+result1
+result1$observed
+result1$expected
+result1$stdres
+
+tb2 <- table(trainDf$Property_Area, trainDf$Loan_Status)
+result2 <- chisq.test(tb2)
+result2
+result2$observed
+result2$expected
+result2$stdres
+
+tb3 <- table(trainDf$Married, trainDf$Loan_Status)
+result3 <- chisq.test(tb3)
+result3
+result3$observed
+result3$expected
+result3$stdres
+
 #For advanced we can do ANOVA (property type?)
 #or Logistical Regression(to predict loan status Y/N)
+factoredGender <- factor(trainDf$Gender)
+factoredPropertyArea <- factor(trainDf$Property_Area)
+factoredEduation <- factor(trainDf$Education)
 
-
+threeWayANOVA <- aov(trainDf$LoanAmount ~ factoredGender * factoredPropertyArea * factoredEduation, data = trainDf)
+summary(threeWayANOVA)
