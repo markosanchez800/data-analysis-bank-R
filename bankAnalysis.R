@@ -85,5 +85,9 @@ ggplot(trainDf, aes(x=ApplicantIncome,y=LoanAmount,color=Loan_Status))+
 
 #For advanced we can do ANOVA (property type?)
 #or Logistical Regression(to predict loan status Y/N)
+factoredGender <- factor(trainDf$Gender)
+factoredPropertyArea <- factor(trainDf$Property_Area)
+factoredEduation <- factor(trainDf$Education)
 
-
+threeWayANOVA <- aov(trainDf$LoanAmount ~ factoredGender * factoredPropertyArea * factoredEduation, data = trainDf)
+summary(threeWayANOVA)
