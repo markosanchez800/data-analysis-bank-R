@@ -1,4 +1,3 @@
-
 #Loading the dataset
 #testDf <- read.csv('test.csv', na.strings = c('','NA'))
 trainDf <- read.csv('train.csv', na.strings = c('','NA')) #Use trainDf
@@ -82,8 +81,8 @@ ggplot(trainDf, aes(x=ApplicantIncome,y=LoanAmount,color=Loan_Status))+
 
 #T-tests
 #Test if H0:mu=146 vs. Ha: mu > 146 for loan amount at α=0.05 
-train$LoanAmount
-Loanvals <- train$LoanAmount[is.na(train$LoanAmount)==FALSE]
+trainDf$LoanAmount
+Loanvals <- trainDf$LoanAmount[is.na(trainDf$LoanAmount)==FALSE]
 mean(Loanvals)
 t.test(Loanvals, alternative= "greater", mu= 146)
 # p-value is 0.4534 so we fail to reject the null hypothesis 
@@ -92,8 +91,8 @@ t.test(Loanvals, alternative= "greater", mu= 146)
 # 2 sample t.test testing the means of two groups for significance 
 # Test if the mean applicant income and co-applicant income are significant
 # Assuming the two groups are independent: H0:mu=0 vs. Ha: mu !=0
-app <- train$ApplicantIncome
-coapp <- train$CoapplicantIncome
+app <- trainDf$ApplicantIncome
+coapp <- trainDf$CoapplicantIncome
 t.test(app, coapp, alternative = "two.sided")
 # p-value is really small so we can reject the null hypothesis which was mu=0.
 # Means the true difference in means is not equal to 0 and 
@@ -101,8 +100,8 @@ t.test(app, coapp, alternative = "two.sided")
 
 # Test whether the difference in mean loan amount between men and women is zero
 # we are testing H0: mu=0 vs. Ha: mu != 0
-t.test(train$LoanAmount[train$Gender=="Female"],
-       train$LoanAmount[train$Gender=="Male"], alternative="two.sided")
+t.test(trainDf$LoanAmount[trainDf$Gender=="Female"],
+       trainDf$LoanAmount[trainDf$Gender=="Male"], alternative="two.sided")
 # p-value is 0.008701 which is less than 0.05 so 
 # we reject the null hyp that mu=0, thus we can conclude
 # that there is a difference in loan amount between men and women
@@ -147,4 +146,3 @@ plot(threeWayANOVA, which = 1)
 
 #ANOVA results
 summary(threeWayANOVA)
-
